@@ -30,4 +30,10 @@ Click on "Apply" button to continue to complete order.
 Now order status will change to "Done".
 Now click on Save button to save the order.
 Now clcick manufacturing icon on top left corner to validate the order.
-User can reverify the order.
+User can reverify the order by selecting the order.
+
+
+
+
+When we automate the appliaction, when we add the qty in manufacturing at #point no. 24 the status directly go to "to close". and testcase2 will get failed. please check attached screenshot for reference![Testcase2](https://user-images.githubusercontent.com/96412743/154860175-99f74d49-127c-4323-ac40-fc45f59279f7.png)
+
