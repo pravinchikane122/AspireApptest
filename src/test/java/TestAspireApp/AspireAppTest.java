@@ -7,7 +7,9 @@ import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -31,6 +33,15 @@ public class AspireAppTest extends base.Baseclass {
 	  	login.enteremail(utilityclass.getdatafromproperty("emailID"));
 		login.enterPassword(utilityclass.getdatafromproperty("pass"));	
 		login.ClickLoginbutton();
+	}
+	@AfterClass
+	public void logoutapp()
+	{
+		Reporter.log("loging out from application", true);
+		home= new HomepageAspireApp(driver);
+		home.logoutfromapp();
+		driver.close();
+		
 	}
 	
   @Test
@@ -89,5 +100,19 @@ public class AspireAppTest extends base.Baseclass {
 		driver.findElement(By.xpath("//button[@type='button']//span[text()='Apply']")).click();
 		driver.findElement(By.xpath("//button[@title='Save record']")).click();
 		driver.findElement(By.xpath("//a[@class='dropdown-item o_menu_brand']")).click();
+		
+		Reporter.log("Validating the qty of newly added product is more than 10 or not?", true);
+		String actualqty = driver.findElement(By.xpath("(//span[text()='12.00'])[2]")).getText();
+		double qty = Double.parseDouble(actualqty);
+		double expectedqty= 10.0;
+		if(qty > expectedqty)
+		{
+			System.out.println("Order qty"+qty+" is more than 10 so test case passed");
+		}
+		else
+		{ 
+			System.out.println("Order qty\"+qty+\" is less than 10 so test case failed");
+		}
+		
 }
 }

@@ -9,6 +9,8 @@ public class HomepageAspireApp {
 	
 	@FindBy(xpath = "//div[text()='Inventory']") private WebElement inventory;
 	@FindBy(xpath = "//div[text()='Manufacturing']") private WebElement manufacturing;
+	@FindBy(xpath="//button[@class='dropdown-toggle  ']") private WebElement usericon;
+	@FindBy(xpath="//a[@data-menu='logout']") private WebElement logout;
 	public HomepageAspireApp(WebDriver driver)
 	{
 		PageFactory.initElements(driver, this);	
@@ -21,6 +23,11 @@ public class HomepageAspireApp {
 	public void clickon_manufacturing_icon()
 	{
 		manufacturing.click();
+	}
+	public void logoutfromapp()
+	{
+		usericon.click();
+		logout.click();
 	}
 	
 	
