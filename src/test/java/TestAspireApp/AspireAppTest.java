@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -32,6 +33,15 @@ public class AspireAppTest extends base.Baseclass {
 	  	login.enteremail(utilityclass.getdatafromproperty("emailID"));
 		login.enterPassword(utilityclass.getdatafromproperty("pass"));	
 		login.ClickLoginbutton();
+	}
+	@AfterClass
+	public void logoutapp()
+	{
+		Reporter.log("loging out from application", true);
+		home= new HomepageAspireApp(driver);
+		home.logoutfromapp();
+		driver.close();
+		
 	}
 	
   @Test
@@ -103,5 +113,6 @@ public class AspireAppTest extends base.Baseclass {
 		{ 
 			System.out.println("Order qty\"+qty+\" is less than 10 so test case failed");
 		}
+		
 }
 }
